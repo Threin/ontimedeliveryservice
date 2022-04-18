@@ -143,7 +143,7 @@
 
                 </li>
                 @can('isAdmin')
-
+                <li></li>
                 <li class="nav-item {{ Route::currentRouteNamed( 'admin.users.index' ) ?  'menu-open' : '' }}
                 {{ Route::currentRouteNamed( 'admin.users.create' ) ?  'menu-open' : '' }}
                 {{ Route::currentRouteNamed( 'admin.users.edit' ) ?  'menu-open' : '' }}">
