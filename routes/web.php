@@ -46,6 +46,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function(){
 
 
 // });
+// Route::get('/dashboard','/Admin/AdminController@index')->name('admin.dashboard');
 Route::get('/permits','PermitsController@index')->name('permits');
 Route::post('/permits/select-permits','PermitsController@selectedPermitsForPrinting')->name('permits.select_for_printing');
 Route::get('/permits/for-printing','PermitsController@getAllForPrinting')->name('permits.for-printing');

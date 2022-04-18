@@ -7,9 +7,11 @@ use App\Permit;
 class PermitsService{
 
    public static function countPermits(){
-        $permits = Permit::all();
+        // $permits = Permit::all();
+        $countPermits = Permit::select('id')->get()->count();
+        // ->where('permit_status','Delivered')->get();
 
-        $countPermits = count($permits);
+        // $countPermits = count($permits);
 
         return $countPermits;
    }
@@ -21,12 +23,22 @@ class PermitsService{
    }
 
    public static function countDeliveredPermits(){
-    $permits = Permit::all()
-    ->where('permit_status','Delivered');
+    // $permits = Permit::all()
+    // ->where('permit_status','Delivered');
+    $countDeliveredPermits = Permit::select('id')
+        ->where('permit_status','Delivered')->get()->count();
 
-    $countDeliveredPermits = count($permits);
+    // $permits = Permit::chunk(100,function($permits){
 
+    //     $countDeliveredPermits = count($permits);
+    //     return $countDeliveredPermits;
+    // });
+    // $countDeliveredPermits = count($permits);
     return $countDeliveredPermits;
+
+    // $countDeliveredPermits = count($permits);
+    // dd($countDeliveredPermits);
+
     }
 
    public static function getAllPermits_pending(){

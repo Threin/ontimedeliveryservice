@@ -143,7 +143,7 @@
                     <div class="col">
                         <div class="small-box bg-white">
                                 <div class="inner">
-                                    <h3><span>0</span></h3>
+                                    <h3><span>{{$deliveredPermits}}</span></span></h3>
                                     <p>‌NO. OF PERMITS DELIVERED</p>
                                 </div>
 
