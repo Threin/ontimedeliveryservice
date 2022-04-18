@@ -20,6 +20,15 @@ class PermitsService{
        return $permits;
    }
 
+   public static function countDeliveredPermits(){
+    $permits = Permit::all()
+    ->where('permit_status','Delivered');
+
+    $countDeliveredPermits = count($permits);
+
+    return $countDeliveredPermits;
+    }
+
    public static function getAllPermits_pending(){
     $permits = Permit::all()
     ->where('permit_status','Pending');
@@ -49,7 +58,7 @@ class PermitsService{
 
    public static function getAllPermits_delivered(){
     $permits = Permit::all()
-    ->where('permit_status','Delievered');
+    ->where('permit_status','Delivered');
 
     return $permits;
    }
@@ -100,9 +109,9 @@ class PermitsService{
    public static function printPreviewById($id){
 
         $permit = Permit::where('permit_bin',$id)->get();
-               
+
         // dd($permit);
-                
+
         return $permit;
 
    }

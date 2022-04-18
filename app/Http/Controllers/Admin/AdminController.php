@@ -13,6 +13,7 @@ use App\User;
 class AdminController extends Controller
 {
     //
+
     public function index(){
         $usersCount = CountUserService::countUsers();
         $users = User::all();
@@ -22,6 +23,8 @@ class AdminController extends Controller
 
         $countRiders = RidersService::countAllRiders();
 
-        return view('admin.dashboard.index',compact('permitsCount','usersCount','countRiders'));
+        $deliveredPermits = PermitsService::countDeliveredPermits();
+
+        return view('admin.dashboard.index',compact('permitsCount','usersCount','countRiders','deliveredPermits'));
     }
 }
