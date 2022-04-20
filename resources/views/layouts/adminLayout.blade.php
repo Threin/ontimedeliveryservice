@@ -212,9 +212,11 @@
                 </li>
                 <li class="nav-item {{ Route::currentRouteNamed( 'permits' ) ?  'menu-open' : '' }}
                                     {{ Route::currentRouteNamed( 'permits.for-printing' ) ?  'menu-open' : '' }}
+                                    {{ Route::currentRouteNamed( 'permits.search' ) ?  'menu-open' : '' }}
                                     ">
                     <a href="#" class="nav-link {{ Route::currentRouteNamed( 'permits' ) ?  'active' : '' }}
                                                 {{ Route::currentRouteNamed( 'permits.for-printing' ) ?  'active' : '' }}
+                                                {{ Route::currentRouteNamed( 'permits.search' ) ?  'active' : '' }}
                                                 ">
                     <i class="nav-icon fas fa-qrcode "></i>
                         <p>
@@ -225,7 +227,8 @@
                     </a>
                     <ul class="nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('permits')}}" class="nav-link {{ Route::currentRouteNamed( 'permits' ) ?  'active' : '' }}">
+                            <a href="{{route('permits')}}" class="nav-link {{ Route::currentRouteNamed( 'permits' ) ?  'active' : '' }}
+                            {{ Route::currentRouteNamed( 'permits.search' ) ?  'active' : '' }}">
                                 <i class="nav-icon fas fa-file-alt"></i>
                                 <p>Available Permits</p>
                             </a>
