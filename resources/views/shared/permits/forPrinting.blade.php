@@ -29,10 +29,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                {{-- <form id="permitForm" method="POST">
-                @csrf --}}
-                    {{-- <pre id="view-rows"></pre> --}}
-                     {{-- <button class="btn btn-danger">View Selected</button> --}}
+                @if(isset($permits))
                     <table id="permits" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -69,18 +66,18 @@
 
                                             </form>
 
-                                        
+
                                     </td>
-                                    
+
                                 </tr>
-                                    
+
                             @endforeach
 
                         </tbody>
 
                     </table>
-                {{-- </form> --}}
-                                   
+                {!! $permits->render() !!}
+                @endif
 
             </div>
             <div class="card-footer">
@@ -89,8 +86,7 @@
                     <pre id="view-rows"></pre>
                 </p>
                 <hr>
-                {{-- <button class="btn btn-primary" form="permitForm"><i class="fas fa-print"></i> Print All Selected</button>
-                 --}}
+
                  <a href="{{ url('/permits/prntpreview/') }}" class="btnprn btn btn-primary"  ><i class="fas fa-print"></i> Print All</a>
                 {{-- <button class="btn btn-info" formaction="{{url('/permits/prntpreview/')}}" ><i class="fas fa-check"></i>Print All</button> --}}
 
@@ -101,28 +97,6 @@
     </div>
 </div>
 
-{{-- <form action="{{route('permits.remove-for-printing', isset($permit->id) ? $permit->id : '' )}}" method="POST" enctype="multipart/form-data" id="deleteForm">
-    @csrf
-
-    <div class="modal fade" id="ModalDelete{{isset($permit->id) ? $permit->id : ''}}" tabindex="1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">{{__('Remove Permit')}}</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">Remove<b> {{ isset($permit->permit_bin) ? $permit->permit_bin : ''  }} </b>?</div>
-                <input type="hidden" value="{{isset($permit->id) ? $permit->id : ''}}" name="id" form="deleteForm">
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn gray btn-outline-secondary" data-dismiss="modal">{{__('Cancel')}}</button>
-                    <button type="Submit" class="btn gray btn-outline-danger" form="deleteForm">Remove</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</form> --}}
 
 
 
@@ -134,17 +108,14 @@
 <script type="text/javascript" src="{{asset ('js/jquery.printPage.js')}}"></script>
 <script>
 
-    /*
-    $(function () {
-        $("#permits").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "excel", "pdf"]
-        }).buttons().container().appendTo('#permits_wrapper .col-md-6:eq(0)');
-    });
-    */
+
     $(document).ready(function(){
 
         var table = $('#permits').DataTable({
+            'reponsive': true,
+            'autoWidth': true,
+            'paging': false,
+            'deferRender': true,
             'columnDefs': [
                 {
                     'targets': 0,
