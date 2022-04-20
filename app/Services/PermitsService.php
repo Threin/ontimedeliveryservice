@@ -45,29 +45,25 @@ class PermitsService{
    }
 
    public static function getAllPermits_printed(){
-    $permits = Permit::all()
-    ->where('permit_status','Printed');
+    $permits = Permit::where('permit_status','Printed')->paginate(100);
 
     return $permits;
    }
 
    public static function getAllPermits_forPrinting(){
-    $permits = Permit::all()
-    ->where('permit_status','For Printing');
+    $permits = Permit::where('permit_status','For Printing')->paginate(100);
 
     return $permits;
    }
 
    public static function getAllPermits_inTransit(){
-    $permits = Permit::all()
-    ->where('permit_status','In-Transit');
+    $permits = Permit::where('permit_status','In-Transit')->paginate(100);
 
     return $permits;
    }
 
    public static function getAllPermits_delivered(){
-    $permits = Permit::all()
-    ->where('permit_status','Delivered');
+    $permits = Permit::where('permit_status','Delivered')->paginate(100);
 
     return $permits;
    }
