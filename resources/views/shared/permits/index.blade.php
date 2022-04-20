@@ -105,7 +105,9 @@
     */
     $(document).ready(function(){
         var table = $('#permits').DataTable({
-
+            'reponsive': true,
+            'autoWidth': true,
+            'paging': false,
             'deferRender': true,
             'columnDefs': [
                 {

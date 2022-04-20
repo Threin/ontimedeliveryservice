@@ -39,47 +39,38 @@ class PermitsService{
 
    public static function getAllPermits_pending(){
 
-    $permits = Permit::where('permit_status','Pending')->paginate(100);
+    $permits = Permit::where('permit_status','Pending')->paginate(25);
 
     return $permits;
    }
 
    public static function getAllPermits_printed(){
-    $permits = Permit::where('permit_status','Printed')->paginate(100);
+    $permits = Permit::where('permit_status','Printed')->paginate(25);
 
     return $permits;
    }
 
    public static function getAllPermits_forPrinting(){
-    $permits = Permit::where('permit_status','For Printing')->paginate(100);
+    $permits = Permit::where('permit_status','For Printing')->paginate(25);
 
     return $permits;
    }
 
    public static function getAllPermits_inTransit(){
-    $permits = Permit::where('permit_status','In-Transit')->paginate(100);
+    $permits = Permit::where('permit_status','In-Transit')->paginate(25);
 
     return $permits;
    }
 
    public static function getAllPermits_delivered(){
-    $permits = Permit::where('permit_status','Delivered')->paginate(100);
+    $permits = Permit::where('permit_status','Delivered')->paginate(25);
 
     return $permits;
    }
 
 
    public static function update_forPrinting($request){
-        // dd($request->id);
-        // foreach($request as $data){
-        //     $permit = Permit::whereIn('permit_bin',$data)
-        //     ->update('permit_status','For Printing');
-        // }
 
-        // return $permit;
-
-        // $str_arr = explode(',',$request->id);
-        // dd($request->id);
 
         $permit = Permit::whereIn('permit_bin',$request->id)
             ->update(['permit_status' => 'For Printing']);
