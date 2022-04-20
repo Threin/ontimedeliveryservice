@@ -31,8 +31,7 @@
             <div class="card-body">
                 <form id="permitForm" method="POST" action="">
                 @csrf
-                    {{-- <pre id="view-rows"></pre> --}}
-                     {{-- <button class="btn btn-danger">View Selected</button> --}}
+
                 @if(isset($permits))
 
                     <table id="permits" class="table table-bordered table-striped">
@@ -74,16 +73,7 @@
 
                 </form>
             </div>
-            {{-- <div class="card-footer">
-                <p><b>Selected Permits</b></p>
-                <p>
-                    <pre id="view-rows"></pre>
-                </p>
-                <hr>
-                 <a href="{{ url('/permits/prntpreview/') }}" class="btnprn btn btn-primary"  ><i class="fas fa-print"></i> Print All</a>
 
-                <button class="btn btn-info" formaction="{{url('/permits/mark-printed/')}}" form="permitForm"><i class="fas fa-check"></i> Mark Selected as Printed</button>
-            </div> --}}
         </div>
     </div>
 </div>
@@ -97,27 +87,6 @@
 <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 <script type="text/javascript" src="{{asset ('js/jquery.printPage.js')}}"></script>
 <script>
-  /*
-    $(function () {
-        $("#permits").DataTable({
-        'paging': false,
-        'deferRender': true,
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-
-        "buttons": ["copy", "excel", "pdf"]
-        }).buttons().container().appendTo('#permits_wrapper .col-md-6:eq(0)');
-
-    });
-    */
-    /*
-    $(function () {
-        $("#permits").DataTable({
-        "responsive": true, "lengthChange": false, "autoWidth": false,
-        "buttons": ["copy", "excel", "pdf"]
-        }).buttons().container().appendTo('#permits_wrapper .col-md-6:eq(0)');
-    });
-    */
-
 
     $(document).ready(function(){
 
@@ -127,10 +96,6 @@
         "responsive": true, "lengthChange": false, "autoWidth": false,
             'order': [[1, 'asc']]
         })
-
-
-
-
     })
 
 
