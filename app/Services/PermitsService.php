@@ -112,5 +112,15 @@ class PermitsService{
 
    }
 
+   public static function searchPermit($q){
+    $permits = Permit::where('permit_bin', 'LIKE', '%' .$q. '%')
+    ->orWhere('permit_tradeName', 'LIKE', '%' .$q. '%')
+    ->orWhere('permit_taxPayersName', 'LIKE', '%' .$q. '%')
+    ->paginate(25)
+    ->setPath('');
+
+    return $permits;
+   }
+
 
 }

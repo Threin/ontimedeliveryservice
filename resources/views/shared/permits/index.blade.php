@@ -34,6 +34,19 @@
                     {{-- <pre id="view-rows"></pre> --}}
                      {{-- <button class="btn btn-danger">View Selected</button> --}}
             @if(isset($permits))
+                    <div class="container">
+                            <form id="searchFrm" method="POST"  role="search" >
+                                @csrf
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="searchInput"   placeholder="Search permits">
+                                    <span class="input-group-btn">
+                                        <button type="submit" formaction="{{url('/search')}}" class="btn btn-default" >
+                                            <span class="fa fa-search"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                    </div>
 
                     <table id="permits" class="table table-bordered table-striped">
                         <thead>
@@ -105,6 +118,7 @@
     */
     $(document).ready(function(){
         var table = $('#permits').DataTable({
+            'filter': false,
             'reponsive': true,
             'autoWidth': true,
             'paging': false,
