@@ -33,13 +33,15 @@
                 @csrf
                     {{-- <pre id="view-rows"></pre> --}}
                      {{-- <button class="btn btn-danger">View Selected</button> --}}
+            @if(isset($permits))
+
                     <table id="permits" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>BIN</th>
                                 <th>BIN</th>
 
-                                <th>Taxpayer's Name</th>
+                                {{-- <th>Taxpayer's Name</th> --}}
                                 <th>Trade Name</th>
                                 <th>Address</th>
 
@@ -54,7 +56,7 @@
                                 <tr>
                                     <td>{{ $permit->permit_bin }}</td>
                                     <td>{{ $permit->permit_bin }}</td>
-                                    <td>{{ $permit->permit_taxPayersName }}</td>
+                                    {{-- <td>{{ $permit->permit_taxPayersName }}</td> --}}
                                     <td>{{ $permit->permit_tradeName }}</td>
                                     <td>{{ $permit->permit_address }}</td>
                                     <td>{{ $permit->permit_status }}</td>
@@ -69,6 +71,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                {!! $permits->render() !!} @endif
                 </form>
             </div>
             <div class="card-footer">
@@ -102,6 +105,8 @@
     */
     $(document).ready(function(){
         var table = $('#permits').DataTable({
+
+            'deferRender': true,
             'columnDefs': [
                 {
                     'targets': 0,
@@ -113,7 +118,9 @@
             'select': {
                 'style': 'multi'
             },
-            'order': [[1, 'asc']]
+            'order': [[1, 'asc']],
+
+
         })
         $('#permitForm').on('submit',function(event){
             var form = this;

@@ -4,6 +4,10 @@ namespace App\Services;
 use App\Permit;
 
 
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Cache;
+
 class PermitsService{
 
    public static function countPermits(){
@@ -23,30 +27,23 @@ class PermitsService{
    }
 
    public static function countDeliveredPermits(){
-    // $permits = Permit::all()
-    // ->where('permit_status','Delivered');
+
     $countDeliveredPermits = Permit::select('id')
         ->where('permit_status','Delivered')->get()->count();
 
-    // $permits = Permit::chunk(100,function($permits){
 
-    //     $countDeliveredPermits = count($permits);
-    //     return $countDeliveredPermits;
-    // });
-    // $countDeliveredPermits = count($permits);
     return $countDeliveredPermits;
 
-    // $countDeliveredPermits = count($permits);
-    // dd($countDeliveredPermits);
 
     }
 
    public static function getAllPermits_pending(){
-    $permits = Permit::all()
-    ->where('permit_status','Pending');
+
+    $permits = Permit::where('permit_status','Pending')->paginate(100);
 
     return $permits;
    }
+
    public static function getAllPermits_printed(){
     $permits = Permit::all()
     ->where('permit_status','Printed');
