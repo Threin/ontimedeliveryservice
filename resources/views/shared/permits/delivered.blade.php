@@ -33,6 +33,8 @@
                 @csrf
                     {{-- <pre id="view-rows"></pre> --}}
                      {{-- <button class="btn btn-danger">View Selected</button> --}}
+                @if(isset($permits))
+
                     <table id="permits" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -68,6 +70,8 @@
                             @endforeach
                         </tbody>
                     </table>
+                {!! $permits->render() !!} @endif
+
                 </form>
             </div>
             {{-- <div class="card-footer">
@@ -93,52 +97,42 @@
 <script type="text/javascript" src="//gyrocode.github.io/jquery-datatables-checkboxes/1.2.12/js/dataTables.checkboxes.min.js"></script>
 <script type="text/javascript" src="{{asset ('js/jquery.printPage.js')}}"></script>
 <script>
+  /*
+    $(function () {
+        $("#permits").DataTable({
+        'paging': false,
+        'deferRender': true,
+        "responsive": true, "lengthChange": false, "autoWidth": false,
 
+        "buttons": ["copy", "excel", "pdf"]
+        }).buttons().container().appendTo('#permits_wrapper .col-md-6:eq(0)');
 
+    });
+    */
+    /*
     $(function () {
         $("#permits").DataTable({
         "responsive": true, "lengthChange": false, "autoWidth": false,
         "buttons": ["copy", "excel", "pdf"]
         }).buttons().container().appendTo('#permits_wrapper .col-md-6:eq(0)');
     });
+    */
 
-    /*
+
     $(document).ready(function(){
 
         var table = $('#permits').DataTable({
-            'columnDefs': [
-                {
-                    'targets': 0,
-                    'checkboxes': {
-                        'selectRow': true
-                    }
-                }
-            ],
-            'select': {
-                'style': 'multi'
-            },
+        'paging': false,
+        'deferRender': true,
+        "responsive": true, "lengthChange": false, "autoWidth": false,
             'order': [[1, 'asc']]
         })
 
-        $('#permitForm').on('submit',function(event){
-            var form = this;
-            var rowsel = table.column(0).checkboxes.selected();
-            $.each(rowsel, function(index, rowId){
-                $(form).append(
-                    $('<input>').attr('type','hidden').attr('name','id[]').val(rowId)
-                )
-            });
-            //$('input[name="id\[\]"]', form).remove();
-            $('#view-rows').text(rowsel.join(','));
-            $('#view-form').text($(form).serialize());
-            //event.preventDefault();
-        })
 
-        $('.btnprn').printPage();
 
 
     })
-    */
+
 
 
 
