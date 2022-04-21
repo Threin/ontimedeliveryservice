@@ -114,7 +114,7 @@ class PermitsService{
 
    public static function searchPermit($q){
     $permits = Permit::where([
-        ['permit_bin', $q],
+        ['permit_bin', 'LIKE', '%' .$q. '%'],
         ['permit_status','Pending']
     ])
     // ->orWhere('permit_tradeName', 'LIKE', '%' .$q. '%')
