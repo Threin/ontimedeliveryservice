@@ -34,18 +34,30 @@
                     {{-- <pre id="view-rows"></pre> --}}
                      {{-- <button class="btn btn-danger">View Selected</button> --}}
             @if(isset($permits))
-                    <div class="container">
+                    <div class="container mb-2">
+
                             <form id="searchFrm" method="POST"  role="search" >
                                 @csrf
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="searchInput"   placeholder="Search permits">
+                                    <input type="text" class="form-control" name="searchInput"   placeholder="Search BIN here..">
                                     <span class="input-group-btn">
-                                        <button type="submit" formaction="{{url('/search')}}" class="btn btn-default" >
+                                        <button type="submit" formaction="{{url('/search')}}" class="btn btn-default" data-toggle="tooltip" title="search">
                                             <span class="fa fa-search"></span>
                                         </button>
                                     </span>
+                                    <span class="input-group-btn">
+                                        {{-- <button type="submit" formaction="{{url('/permits')}}" class="btn btn-default" >
+                                            <span class="fa fa-sync"></span>
+                                        </button> --}}
+                                         <a href="{{ url('/permits') }}" class="btn btn-default" data-toggle="tooltip" title="refresh table"><span class="fa fa-sync"></span></a>
+
+                                    </span>
                                 </div>
                             </form>
+                             @if(isset($q))
+                            <p> The Search results for your query <b> {!! $q !!} </b> </p>
+                            @endif
+
                     </div>
 
                     <table id="permits" class="table table-bordered table-striped">
@@ -151,6 +163,8 @@
             $('#view-form').text($(form).serialize());
             //event.preventDefault();
         })
+
+        $('[data-toggle="tooltip"]').tooltip();
     })
 
 

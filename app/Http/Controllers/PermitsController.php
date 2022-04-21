@@ -114,16 +114,28 @@ class PermitsController extends Controller
 
     public function seachPermit(Request $request){
         $q = $request->searchInput;
+        // dd($q);
 
-       $permits = PermitsService::searchPermit($q);
-
-        if(count($permits)>0){
-            return view('shared.permits.index',compact('permits'));
-        }
-        $request->session()->flash('error','No Details found. Try to search again !');
+        $permits = PermitsService::searchPermit($q);
+        if($q == null){
+            $request->session()->flash('error','No Details found. Try to search again !');
         // return view('shared.permits.index',compact('permits'));
 
-        return redirect()->route('permits');
+            return redirect()->route('permits');
+        }
+        if(count($permits)>0){
+            return view('shared.permits.index',compact('permits','q'));
+            // return redirect()->route('permits',['permits' => $permits]);
+        }else{
+            $request->session()->flash('warning','No Details found. Try to search again !');
+
+            return redirect()->route('permits');
+        }
+
+
+
+
+
 
     }
 }
