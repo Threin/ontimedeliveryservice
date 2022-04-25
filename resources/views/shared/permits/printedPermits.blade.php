@@ -142,6 +142,7 @@
             'autoWidth': true,
             'paging': false,
             'deferRender': true,
+            /*
             'columnDefs': [
                 {
                     'targets': 0,
@@ -150,6 +151,7 @@
                     }
                 }
             ],
+            */
             'select': {
                 'style': 'multi'
             },
