@@ -39,9 +39,9 @@
                             <form id="searchFrm" method="POST"  role="search" >
                                 @csrf
                                 <div class="input-group">
-                                    <input type="text" class="form-control" name="searchInput"   placeholder="Search BIN here..">
+                                    <input type="text" class="form-control mr-2" name="searchInput"   placeholder="Search BIN here..">
                                     <span class="input-group-btn">
-                                        <button type="submit" formaction="{{url('/search')}}" class="btn btn-default" data-toggle="tooltip" title="search">
+                                        <button type="submit" formaction="{{url('/search')}}" class="btn btn-warning mr-2" data-toggle="tooltip" title="search">
                                             <span class="fa fa-search"></span>
                                         </button>
                                     </span>
@@ -49,7 +49,7 @@
                                         {{-- <button type="submit" formaction="{{url('/permits')}}" class="btn btn-default" >
                                             <span class="fa fa-sync"></span>
                                         </button> --}}
-                                         <a href="{{ url('/permits') }}" class="btn btn-default" data-toggle="tooltip" title="refresh table"><span class="fa fa-sync"></span></a>
+                                         <a href="{{ url('/permits') }}" class="btn btn-primary" data-toggle="tooltip" title="refresh table"><span class="fa fa-sync"></span></a>
 
                                     </span>
                                 </div>

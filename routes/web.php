@@ -60,4 +60,6 @@ Route::get('/permits/prntpreview/','PermitsController@printPreview')->name('perm
 Route::get('/permits/prntpreview/{id}','PermitsController@printPreviewById')->name('permits.solo-printPreview');
 
 Route::post('/search','PermitsController@seachPermit')->name('permits.search');
+Route::post('/search/printed-permits','PermitsController@seachPrintedPermit')->name('permits.searchPrinted');
+
 

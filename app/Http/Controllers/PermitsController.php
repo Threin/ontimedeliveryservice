@@ -138,4 +138,30 @@ class PermitsController extends Controller
 
 
     }
+    public function seachPrintedPermit(Request $request){
+        $q = $request->searchInput;
+        // dd($q);
+
+        $permits = PermitsService::searchPrintedPermit($q);
+        if($q == null){
+            $request->session()->flash('error','No Details found. Try to search again !');
+        // return view('shared.permits.index',compact('permits'));
+
+            return redirect()->route('permits.printed');
+        }
+        if(count($permits)>0){
+            return view('shared.permits.printedPermits',compact('permits','q'));
+            // return redirect()->route('permits',['permits' => $permits]);
+        }else{
+            $request->session()->flash('warning','No Details found. Try to search again !');
+
+            return redirect()->route('permits.printed');
+        }
+
+
+
+
+
+
+    }
 }

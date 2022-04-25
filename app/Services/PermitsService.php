@@ -126,5 +126,19 @@ class PermitsService{
     return $permits;
    }
 
+   public static function searchPrintedPermit($q){
+    $permits = Permit::where([
+        ['permit_bin', 'LIKE', '%' .$q. '%'],
+        ['permit_status','Printed']
+    ])
+    // ->orWhere('permit_tradeName', 'LIKE', '%' .$q. '%')
+    // ->orWhere('permit_taxPayersName', 'LIKE', '%' .$q. '%')
+    // ->orWhere('permit_status','Pending')
+    ->paginate(25)
+    ->setPath('');
+
+    return $permits;
+   }
+
 
 }

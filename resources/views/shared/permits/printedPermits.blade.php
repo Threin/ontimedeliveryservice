@@ -29,10 +29,37 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <form id="permitForm" method="POST" action="">
-                @csrf
+                {{-- <form id="permitForm" method="POST" action="">
+                @csrf --}}
                     {{-- <pre id="view-rows"></pre> --}}
                      {{-- <button class="btn btn-danger">View Selected</button> --}}
+                @if(isset($permits))
+                    <div class="container mb-2">
+
+                            <form method="POST"  action="{{route('permits.searchPrinted')}}" role="search" >
+                                @csrf
+                                <div class="input-group">
+                                    <input type="text" class="form-control mr-2" name="searchInput"   placeholder="Search BIN here..">
+                                    <span class="input-group-btn">
+                                        <button type="submit"  class="btn btn-warning mr-2" data-toggle="tooltip" title="search" >
+                                            <span class="fa fa-search"></span>
+                                        </button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        {{-- <button type="submit" formaction="{{url('/permits')}}" class="btn btn-default" >
+                                            <span class="fa fa-sync"></span>
+                                        </button> --}}
+                                         <a href="{{ url('/permits/list-printed') }}" class="btn btn-primary" data-toggle="tooltip" title="refresh table"><span class="fa fa-sync"></span></a>
+
+                                    </span>
+                                </div>
+                            </form>
+                             @if(isset($q))
+                            <p> The Search results for your query <b> {!! $q !!} </b> </p>
+                            @endif
+
+                    </div>
+
                     <table id="permits" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -68,7 +95,9 @@
                             @endforeach
                         </tbody>
                     </table>
-                </form>
+                {!! $permits->render() !!} @endif
+                
+                {{-- </form> --}}
             </div>
             {{-- <div class="card-footer">
                 <p><b>Selected Permits</b></p>
@@ -94,22 +123,25 @@
 <script type="text/javascript" src="{{asset ('js/jquery.printPage.js')}}"></script>
 <script>
 
-
+ /*
     $(function () {
         $("#permits").DataTable({
         'paging': false,
         'deferRender': true,
         "responsive": true, "lengthChange": false, "autoWidth": false,
-        /*
+       
         "buttons": ["copy", "excel", "pdf"]
         }).buttons().container().appendTo('#permits_wrapper .col-md-6:eq(0)');
-        */
+        
     });
+    */
 
-    /*
-    $(document).ready(function(){
-
-        var table = $('#permits').DataTable({
+    var table = $('#permits').DataTable({
+            'filter': false,
+            'reponsive': true,
+            'autoWidth': true,
+            'paging': false,
+            'deferRender': true,
             'columnDefs': [
                 {
                     'targets': 0,
@@ -121,28 +153,13 @@
             'select': {
                 'style': 'multi'
             },
-            'order': [[1, 'asc']]
+            'order': [[1, 'asc']],
+
+
         })
+    
 
-        $('#permitForm').on('submit',function(event){
-            var form = this;
-            var rowsel = table.column(0).checkboxes.selected();
-            $.each(rowsel, function(index, rowId){
-                $(form).append(
-                    $('<input>').attr('type','hidden').attr('name','id[]').val(rowId)
-                )
-            });
-            //$('input[name="id\[\]"]', form).remove();
-            $('#view-rows').text(rowsel.join(','));
-            $('#view-form').text($(form).serialize());
-            //event.preventDefault();
-        })
-
-        $('.btnprn').printPage();
-
-
-    })
-    */
+  
 
 
 
